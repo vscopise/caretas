@@ -1,23 +1,34 @@
 import React, { Component} from 'react'
-import { Link, Route } from 'react-router-dom'
 import axios from 'axios'
 
 class Categoria extends Component {
     constructor(props) {
         super(props)
+
+        //let path = this.props.location.pathname
+        //const cat = path.substring(path.lastIndexOf('/'))
+
         this.state = {
+            //cat: null,
+            catId: null,
             posts: [],
             isLoading: true
         } 
     }
 
-    componentWillMount(){
-        let path = this.props.location.pathname
-        const cat = path.substring(path.lastIndexOf('/'))
+    componentDidMount(){
+        this.setState({ 
+            isLoading: true 
+        })
 
+        const url = 'https://www.carasycaretas.com.uy/wp-json/wp/v2/'
+        //var cat_id = this.props.cat_id
 
+        const { catId } = this.props.location.state
+        this.setState({catId, catId})
+        console.log(catId)
         axios
-            .get( 'https://www.carasycaretas.com.uy/wp-json/wp/v2/posts/?categories' + cat )
+            .get( url + 'posts/?categories=' + catId )
             .then(res => {
             this.setState({ 
                 posts: res.data,
@@ -29,12 +40,33 @@ class Categoria extends Component {
     
 
     render(){
-        const match = this.props.match
+        const { params } = this.props.match
+        if ( this.state.isLoading ) {
+            return <div>
+                <p>params{params.catId}</p>
+                        <p>Cargando...</p>
+                    </div>
+        } else {
+            return (
+                <div>
+                    <h2>{params.catId}</h2>
+                    {
+                        this.state.posts.map( post => (
+                            <p key={post.id}>{post.title.rendered}</p>
+                        ))
+                    }
+                </div>
+            )
+        }
+        
+
+        
+        /*const match = this.props.match
         return ( 
             <Route path={`${match.path}/:name`} render= {({match}) =>( 
                 <div> <h3> {match.params.name} </h3></div>
             )}/>
-        )
+        )*/
     }
 }
 export default Categoria

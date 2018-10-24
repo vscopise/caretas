@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import Categoria from './Categoria'
@@ -7,7 +7,7 @@ const Main = () => (
     <main>
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path='/categoria' component={Categoria}/>
+        <Route path='/categoria/:catId' component={Categoria}/>
       </Switch>
     </main>
   )

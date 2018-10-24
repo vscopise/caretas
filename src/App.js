@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 
 import { 
   CssBaseline,
-  Toolbar,
   withStyles
 } from '@material-ui/core'
 
