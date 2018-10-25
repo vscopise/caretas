@@ -5,28 +5,15 @@ class Categoria extends Component {
     constructor(props) {
         super(props)
 
-        //let path = this.props.location.pathname
-        //const cat = path.substring(path.lastIndexOf('/'))
-
         this.state = {
-            //cat: null,
             catId: null,
             posts: [],
             isLoading: true
         } 
     }
 
-    componentDidMount(){
-        this.setState({ 
-            isLoading: true 
-        })
-
+    fetch_posts = (catId) => {
         const url = 'https://www.carasycaretas.com.uy/wp-json/wp/v2/'
-        //var cat_id = this.props.cat_id
-
-        const { catId } = this.props.location.state
-        this.setState({catId, catId})
-        console.log(catId)
         axios
             .get( url + 'posts/?categories=' + catId )
             .then(res => {
@@ -37,19 +24,53 @@ class Categoria extends Component {
         })
         .catch(error => console.log(error))
     }
+
+    componentDidMount(){
+        this.setState({ 
+            isLoading: true 
+        })
+
+        //const { catId } = this.props.match.params
+        const { catId } = this.props.location.state
+        this.fetch_posts(catId)
+
+        //const url = 'https://www.carasycaretas.com.uy/wp-json/wp/v2/'
+        //var catId = this.props.catId
+
+        //const { catId } = props.location.state
+        //this.setState({catId, catId})
+        //console.log(catId)
+        /*axios
+            .get( url + 'posts/?categories=' + catId )
+            .then(res => {
+            this.setState({ 
+                posts: res.data,
+                isLoading: false 
+            })
+        })
+        .catch(error => console.log(error))*/
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.location !== this.props.location) {
+          const { catId } = nextProps.location.state
+          this.fetch_posts(catId)
+        }
+    }
     
 
     render(){
-        const { params } = this.props.match
+
+        const { catId } = this.props.location.state
+        
         if ( this.state.isLoading ) {
             return <div>
-                <p>params{params.catId}</p>
                         <p>Cargando...</p>
                     </div>
         } else {
             return (
                 <div>
-                    <h2>{params.catId}</h2>
+                    <h2>{catId}</h2>
                     {
                         this.state.posts.map( post => (
                             <p key={post.id}>{post.title.rendered}</p>

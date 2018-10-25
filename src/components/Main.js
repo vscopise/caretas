@@ -7,8 +7,10 @@ const Main = () => (
     <main>
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path='/categoria/:catId' component={Categoria}/>
+        <Route path='/categoria' component={Categoria}/>
+
       </Switch>
+      
     </main>
   )
   
