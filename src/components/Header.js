@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { 
     Grid, Toolbar
@@ -23,13 +22,13 @@ const sections = [
     },
     {
         id: 3,
-        catId: null,
+        catId: 43,
         link: '/categoria/sociedad',
         label: 'Sociedad'
     },
     {
         id: 4,
-        catId: null,
+        catId: 11,
         link: '/categoria/internacionales',
         label: 'Internacionales'
     },
@@ -41,25 +40,25 @@ const sections = [
     },
     {
         id: 6,
-        catId: null,
+        catId: 44,
         link: '/categoria/economia',
         label: 'Economía'
     },
     {
         id: 7,
-        catId: null,
+        catId: 50,
         link: '/categoria/cultura',
         label: 'Cultura'
     },
     {
         id: 8,
-        catId: null,
+        catId: 27,
         link: '/categoria/vida-y-ocio',
         label: 'Vida y Ocio'
     },
     {
         id: 9,
-        catId: null,
+        catId: 26,
         link: '/categoria/empresariales',
         label: 'Empresariales'
     },
@@ -77,56 +76,7 @@ const sections = [
     },
 ];
 
-
 class Header extends Component {
-    fetch_categories() {
-        /*const cat_menu = [
-            {slug: 'politica'},
-            {slug: 'sociedad'},
-            {slug: 'internacionales'},
-            {slug: 'deportes'},
-            {slug: 'economia-2'},
-            {slug: 'cultura-y-espectaculos'},
-            {slug: 'vida-y-ocio'},
-            {slug: 'empresariales'}
-        ]*/
-
-          const cat_menu = [
-            'politica',
-            'sociedad',
-            'internacionales',
-            'deportes',
-            'economia-2',
-            'cultura-y-espectaculos',
-            'vida-y-ocio',
-            'empresariales'
-          ]
-        const url = 'https://www.carasycaretas.com.uy/wp-json/wp/v2/'
-        //console.log(cat_menu.includes('deportes2'))
-          var categories = []
-           
-        axios.get( url + 'categories?per_page=100' )
-        .then(res =>(
-            categories = res.data
-            //this.setState({
-                //cats: res.data.filter( category => cat_menu.slug.includes(category.slug) )
-                ////cats: res.data.filter( category => cat_menu.slug === category.slug )
-                //console.log(res.data.map( cat => cat_menu.includes(cat.slug) ))
-            //})
-        ))
-        .catch((error) => console.log(error))
-            /*.then (res => (
-                this.setState({
-                    cats: res.data.filter(category => cat_menu.includes(category.slug))
-                })
-            )*/
-            var {cat, cats} = []
-        for(var i=0;i<categories.length; i++){
-            if(cat_menu.includes(categories[i])) {
-                cats.push(categories[i])
-            }
-        }
-    }
 
     constructor(props) {
         super(props)
@@ -138,14 +88,9 @@ class Header extends Component {
         }
     }
 
-    
-
-
     render() {
         const styles = this.props.className
 
-        //const categories = cat_menu
-        this.fetch_categories()
         return(
             <div className={styles.header}>
                 <Grid container spacing={24}>
@@ -163,7 +108,10 @@ class Header extends Component {
                             key={section.id} 
                             to={{
                                 pathname: section.link,
-                                state: { catId: section.catId }
+                                state: { 
+                                    catId: section.catId,
+                                    catTitle: section.label 
+                                }
                             }}
                         >
                             {section.label}
@@ -173,6 +121,7 @@ class Header extends Component {
             </div>
         )
     }
+
 }
 
 export default Header

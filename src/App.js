@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 
 import { 
   CssBaseline,
+  Grid,
   withStyles
 } from '@material-ui/core'
 
@@ -24,7 +25,14 @@ class App extends Component {
         <CssBaseline />
         <div className={classes.layout}>
             <Header className={classes} />
-            <Main />
+
+            <Grid container spacing={24}>
+              <Grid item md={8} xs={12}>
+                <Main />
+              </Grid>
+              <Grid item md={4} xs={12}>Sidebar</Grid>
+            </Grid>
+            
             <Footer />
         </div>
       </Fragment>
