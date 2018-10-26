@@ -74,6 +74,18 @@ class Post extends Component {
                     className='entry-excerpt'
                     dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} 
                 />
+                <div className=''>
+                    <img 
+                        className='content-list-thumb' 
+                        src={post.image_url} 
+                        alt={post.title.rendered} 
+                    />
+                </div>
+                <div className='entry-meta'></div>
+                <div 
+                    className='entry-content'
+                    dangerouslySetInnerHTML={{__html: post.content.rendered}} 
+                />
             </div>
         )
     }
