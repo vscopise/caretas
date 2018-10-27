@@ -50,6 +50,29 @@ const styles = theme => ({
             fontSize: '120%',
             color: '#333',
         },
+        '& .large_menu': {
+            textAlign: 'left',
+            background: '#dd0008',
+            padding: '0',
+            minHeight: 'auto',
+            marginTop: 20,
+            '& a': {
+                display: 'inline-block',
+                fontFamily: 'Oswald',
+                color: '#fff',
+                textDecoration: 'none',
+                textTransform: 'uppercase',
+                padding: '.625rem .5rem',
+                borderLeft: '1px solid #424242'
+            },
+            '& a:first-child': {
+                borderLeftColor: '#dd0008'
+            }
+        },
+        '& .small_menu': {
+            background: '#dd0008',
+            height: 42,
+        }
     },
     header: {
       paddingTop: 20,
@@ -65,24 +88,10 @@ const styles = theme => ({
         textAlign: 'center',
         color: '#a0a0a0',
         fontSize: '0.9rem',
-      }
+      },
     },
-    toolbar: {
-        background: '#dd0008',
-        padding: '0',
-        minHeight: 'auto',
-        marginTop: 20,
-        '& a': {
-            fontFamily: 'Oswald',
-            color: '#fff',
-            textDecoration: 'none',
-            textTransform: 'uppercase',
-            padding: '.625rem .5rem',
-            borderLeft: '1px solid #424242'
-        },
-        '& a:first-child': {
-            borderLeftColor: '#dd0008'
-        }
+    navbar: {
+        
     },
     body: {
         paddingTop: 20,

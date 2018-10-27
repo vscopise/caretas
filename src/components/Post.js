@@ -32,7 +32,11 @@ class PreviewPost extends Component {
             }
             case 'medium': {
                 return(
-                    <Grid container spacing={24} onClick={e =>this.handleClick(e, post)} className='content-list'>
+                    <Grid 
+                        container spacing={24} 
+                        onClick={e =>this.handleClick(e, post)} 
+                        className='content-list'
+                        >
                         <Grid item md={4} xs={12}>
                             <img 
                                 className='content-list-thumb' 

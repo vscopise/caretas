@@ -12,6 +12,7 @@ import 'typeface-oswald'
 import styles from './assets/styles'
 
 import Header from './components/Header'
+import Navbar from './components/Navbar'
 import Main from './components/Main'
 import Footer from './components/Footer'
 
@@ -24,8 +25,10 @@ class App extends Component {
       <Fragment>
         <CssBaseline />
         <div className={classes.layout}>
-            <Header className={classes} />
-
+          <div className={styles.header}>
+              <Header className={classes} />
+              <Navbar className={styles.navbar} />
+          </div>
             <Grid container spacing={24}>
               <Grid item md={8} xs={12}>
                 <Main />
