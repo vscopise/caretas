@@ -72,7 +72,19 @@ const styles = theme => ({
         '& .small_menu': {
             background: '#dd0008',
             height: 42,
-        }
+            zIndex: '999',
+            '& a': {
+                display: 'block',
+                background: '#dd0008',
+                fontFamily: 'Oswald',
+                color: '#fff',
+                textDecoration: 'none',
+                textAlign: 'left',
+                paddingLeft: 20,
+                width: '100%',
+                float: 'left',
+            }
+        },
     },
     header: {
       paddingTop: 20,

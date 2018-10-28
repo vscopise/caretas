@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import ResponsiveMenu from 'react-responsive-navbar';
+import ResponsiveMenu from 'react-responsive-navbar'
+
+import { Menu } from '@material-ui/icons'
 
 const sections = [
     {
@@ -83,12 +85,12 @@ class Navbar extends Component {
         const styles = this.props.className
         return (
             <ResponsiveMenu
-                menuOpenButton={<div />}
-                menuCloseButton={<div />}
+                menuOpenButton={<div><Menu/></div>}
+                menuCloseButton={<div><Menu/></div>}
                 changeMenuOn="1200px"
                 largeMenuClassName="large_menu"
                 smallMenuClassName="small_menu"
-                menu= {
+                menu = {
                     sections.map((section) => (
                         <Link 
                             key={section.id} 
